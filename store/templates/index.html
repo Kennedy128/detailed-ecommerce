@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+{{block.super}}
+
+<div class="container">
+  <div class="jumbotron">
+  <h1 class="text-center">MY products</h1>
+  <blockquote class="text-center"><cite>Get what you want at an affordable price</cite></blockquote>
+  </div>
+  <div class="row">
+  {% for product in products %}
+    <div class="col-xs-12 col-sm-6 col-md-4 column">
+      <div class="card">
+      <img src="{{product.imageURL}}" class="img-responsive" height="" width="" data-toggle="modal" data-target="#{{product.name}}">
+      </div>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="{{product.name}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLabel">Name: {{product.name}}</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <img src="{{product.imageURL}}" class="img-responsive">
+              <h4>Description: {{product.description}}</h4>
+              <h4>price: {{product.price}}</h4>
+              <h4>availability: {{product.availability}}</h4>
+              <input type="text" value="https://gallerymbithi-picture.herokuapp.com{{product.imageURL}}" id="imageurl">
+              <button class="btn-xs btn-primary" onclick="copyFunction()">Copy link</button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  {% endfor %} 
+  </div>
+</div> 
+{% endblock %}

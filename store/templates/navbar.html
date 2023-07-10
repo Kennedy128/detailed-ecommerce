@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopping empire</title>
+</head>
+<body>
+<nav class="navbar sticky-top navbar-expand-lg navbar-light" id="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'store' %}" id="store">super collection</a>
+    </div>
+  
+    <!-- search form end -->
+    
+    <div class="col-sm-4 col-md-4 navbar-right">
+      {% if user.is_authenticated %}
+      <ul>
+        <ul class="dropdown">
+          <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Actions
+                    <span class="caret"></span>
+                </a>
+          <ul class="dropdown-menu" role="menu">
+          
+          
+            <li>
+              <a href="/accounts/logout/">Logout</a>
+            </li>
+          
+            <li>
+              <a href="{% url 'store' %}">store</a>
+            </li>
+            <li>
+              <a href="/admin">admin</a>
+            </li>
+          </ul>
+        </ul>
+      </ul>
+      {% else %}
+      <li>
+        <a class="btn btn-default" href="/accounts/login">Login</a>
+      </li>
+
+      {% endif %}
+    </div> 
+    <!-- Adding a search form  -->
+   
+  </div>
+</nav>
+</body>
+</html>

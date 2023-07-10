@@ -1,0 +1,48 @@
+{%extends "django_registration/base.html"%} 
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+
+        <img style="height:750px; width:650px;object-fit:cover; border: 2px solid red;" src="/media/images/fun.webp"
+          alt="">
+      </div>
+    
+      <div class="col-md-6">
+      <br>
+      <h1 class="text-center">Get what you want at an affordable price</h1>
+      <br>
+      {% if form.errors %}
+        <p> Some Information Might be Incorrect </p>
+      {% endif %}
+      <div class="card" style= "width:40rem;display: flex;
+      margin: 0 auto;">
+        <div class="card-header">
+          Register</div>
+          <div class="card-body">
+            <form  action="/accounts/register/" method="post">
+              {% csrf_token %}
+              {% bootstrap_form form %}
+              <div class="form-group">
+                <input type="submit" class="btn btn-dark" value="Register">
+              </div>
+  
+              <input type="hidden" name="next" value="{{next}}">
+  
+            </form>
+
+          </div>
+        </div>
+  
+    </div>
+    <div class="col-md-6">
+      
+      <img style="height:900px; width:650px;object-fit:cover; border: 2px solid white;" src="/media/images/fun2.jpeg"
+        alt="">
+    </div>
+    
+  </div>
+</div>
+
+{% endblock %}

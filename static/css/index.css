@@ -1,0 +1,41 @@
+body{
+    background-color:peru;
+    font-family: '';
+  }
+  .navbar-brand{
+    font-family: 'Chelsea Market', cursive;  
+    font-size: 30px;
+    font-weight: bold;
+    
+}
+
+.navbar-list{
+    font-size: 40px;
+}
+
+#image-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+body{
+    background: url("/media/images/background.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; }
+    /*background-color: #E7D8C9;
+    
+    font-family: 'Reem Kufi', sans-serif;
+    color: black;
+    font-size : 25px;
+}
+h1{
+    font-family: 'Chelsea Market', cursive;  
+    font-size: 40px;
+    font-weight: bold;
+    color: #8A5A44;
+}
+.profile{
+    margin: 0 auto;
+    
+}
