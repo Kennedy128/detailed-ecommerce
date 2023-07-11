@@ -20,6 +20,8 @@ def create_customer(sender,instance,created,**kwargs):
 post_save.connect(create_customer, sender=User)
 
 
+
+
 class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.FloatField()
@@ -27,6 +29,7 @@ class Product(models.Model):
     availability = models.BooleanField(default=False , null=True , blank=True)
     description=models.CharField(max_length = 100)
     image = CloudinaryField('image')
+   
 
     @property
     def imageURL(self):
@@ -53,6 +56,8 @@ class Product(models.Model):
         '''  
         products = cls.objects.filter(name__icontains=search_term)
         return products
+    
+   
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer , on_delete=models.SET_NULL , null=True , blank = True)
