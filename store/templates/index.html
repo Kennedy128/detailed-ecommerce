@@ -30,6 +30,8 @@
               <h4>Description: {{product.description}}</h4>
               <h4>price: {{product.price}}</h4>
               <h4>availability: {{product.availability}}</h4>
+              <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+              <a class="btn btn-outline-success" href="#">View</a>
               <input type="text" value="https://gallerymbithi-picture.herokuapp.com{{product.imageURL}}" id="imageurl">
               <button class="btn-xs btn-primary" onclick="copyFunction()">Copy link</button>
             </div>
