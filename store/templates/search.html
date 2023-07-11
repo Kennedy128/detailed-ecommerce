@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+{{block.super}}
+
+<div class="container">
+  <br>
+  <br>
+  <div class="row">
+      {% if products%}
+      <h2>Found {{ products|length }} under the name {{message}}</h2>
+    {% else %}
+      <h2> Found 0 products under the name of this {{message}}</h2>
+    {% endif %} 
+
+  </div>
+
+  <div class="row">
+    {%for product in products%}
+        <div class="col-md-4" >
+          <div class="card">
+          <img class="card-img-top" src="{{product.imageURL}}" alt="Card image cap" style="width:100%;max-width:350px;padding-top:10px;height: 250px;">
+          <div class="card-body">
+            <h5 class="card-title">Name: {{product.name}}</h5>
+            <p class="card-text">Description: {{product.description}}</p>
+            
+       
+          </div>
+          </div>
+        </div>
+    
+    {%endfor%}
+
+
+  </div>
+  </div>
+  {%endblock%}

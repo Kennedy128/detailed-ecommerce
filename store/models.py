@@ -39,6 +39,20 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @classmethod
+    def get_product_by_id(cls,product_id):
+        products=cls.objects.get(id=product_id)
+        return products  
+    
+
+    @classmethod
+    def search_by_name(cls,search_term):
+        '''
+        method that retrieves a project by use of its name
+        '''  
+        products = cls.objects.filter(name__icontains=search_term)
+        return products
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer , on_delete=models.SET_NULL , null=True , blank = True)

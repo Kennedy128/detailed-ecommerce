@@ -150,3 +150,23 @@ def processOrder(request):
         
 
     return JsonResponse('Payment submitted',safe=False)
+
+@login_required
+def search_results(request):
+    if 'name' in request.GET and request.GET["name"]:
+        search_term = request.GET.get("name")
+        searched_products =Product.search_by_name(search_term)
+        message = f"{search_term}"
+        return render(request, 'search.html',{"message":message,"products": searched_products})
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message}) 
+    
+@login_required
+def single_post(request, id):
+    customer = request.user.customer
+    product = Product.objects.get(pk=id)
+    current_user = request.user
+    product = Product.get_product_by_id(id)
+    
+    return render(request,'singlepost.html',{"product":product})

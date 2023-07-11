@@ -6,7 +6,7 @@
 
 <div class="container">
   <div class="jumbotron">
-  <h1 class="text-center">MY products</h1>
+  <h1 class="text-center">Kennedys empire</h1>
   <blockquote class="text-center"><cite>Get what you want at an affordable price</cite></blockquote>
   </div>
   <div class="row">
@@ -31,9 +31,8 @@
               <h4>price: {{product.price}}</h4>
               <h4>availability: {{product.availability}}</h4>
               <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
-              <a class="btn btn-outline-success" href="#">View</a>
-              <input type="text" value="https://gallerymbithi-picture.herokuapp.com{{product.imageURL}}" id="imageurl">
-              <button class="btn-xs btn-primary" onclick="copyFunction()">Copy link</button>
+              <a class="btn btn-outline-success" href="{% url 'post' product.id%}">View</a>
+             
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
