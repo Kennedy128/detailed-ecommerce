@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+import datetime
 from .models import *
 from django.http import JsonResponse
 import json
@@ -94,4 +95,58 @@ def updateItem(request):
     return JsonResponse('Item was added', safe=False)
 
 
+def checkout(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order,created = Order.objects.get_or_create(customer = customer , complete = False)
+        
+        items = order.orderitem_set.all()
+        cart_items = order.get_cart_items
+       
 
+    else:
+        items = []
+        order = {'get_cart_items':0 , 'get_cart_total':0 ,'shippping':False}
+        cart_items = order['get_cart_items']
+
+    context = {'items':items , 'order':order , 'cart_items': cart_items }
+    return render(request,'checkout.html' , context)
+
+
+
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order,created = Order.objects.get_or_create(customer = customer , complete = False)
+        total = float(data['form']['total'])
+        order.transaction_id  = transaction_id
+
+        b_total = round(order.get_cart_total, 2)
+
+        print(total)
+        print(b_total)
+
+        if total == b_total:
+            order.complete = True
+            print('executed')
+        
+        order.save()
+            
+        if order.shipping == True:
+            ShippingAddress.objects.create(
+                customer = customer,
+                order = order,
+                address=data['shipping']['address'],
+                city=data['shipping']['city'],
+                state=data['shipping']['state'],
+                zipcode=data['shipping']['zipcode'],
+            )
+
+    else:
+        print('User not logged in')
+        
+
+    return JsonResponse('Payment submitted',safe=False)

@@ -48,8 +48,11 @@
                 <div style="flex:1"><p>${{item.get_total}}</p></div>
             </div>
             {% endfor %}
+            
         </div>
         
 	</div>
 </div>
+<a href="{% url 'checkout'%}"><button class="btn-xs btn-primary">checkout</button> </a>
+<a href="{% url 'process_order'%}"><button class="btn-xs btn-primary">process-order</button> </a>
 {% endblock content %}
